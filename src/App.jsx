@@ -1,5 +1,7 @@
 import React from 'react';
-import cirengPfp from '/home/silverwolf/elysia-landing-page/src/assets/cirengavatar.png'
+import cirengPfp from './assets/cirengavatar.png';
+import gnzyPfp from './assets/sponsor.png';
+import ahiruPfp from './assets/clanker.png'
 
 const MemberCard = ({ name, role, tech, pfp }) => (
   <div className="bg-white/80 backdrop-blur-sm border-2 border-pink-200 p-8 rounded-[2rem] flex flex-col items-center text-center shadow-lg shadow-pink-100/50 hover:border-pink-400 hover:shadow-pink-200/60 transition-all duration-500 group">
@@ -30,13 +32,13 @@ const ElysiaLandingPage = () => {
       name: "Gnzyyyyyyy",
       role: "Fullstack-dev, Dongo, Concrete-maker, Ahiru's slave, Duelist, Controller",
       tech: ["Major: Computer Science", "Stack: Java, Springboot, Mongodb, PostgreSQL, React, Next.js", "Mood: ✨"],
-      pfp: 'src/assets/sponsor.png'
+      pfp: gnzyPfp
     },
     {
       name: "AhiruSareas",
       role: "Cook, Main-builder, Idea-initiator, Sentinel",
       tech: ["Major: Culinary", "Stack: Knife, Chef-jacket, Cutting board??", "Mood: 🦆"],
-      pfp: 'src/assets/clanker.png'
+      pfp: ahiruPfp
     }
   ];
 
