@@ -11,7 +11,7 @@ services:
     labels:
       - "traefik.enable=true"
       # Using your new domain here!
-      - "traefik.http.routers.elysia-landing.rule=Host(`elysiavernight.com`)"
+      - "traefik.http.routers.elysia-landing.rule=Host(`${DOMAIN}`)"
       - "traefik.http.routers.elysia-landing.entrypoints=websecure"
       - "traefik.http.routers.elysia-landing.tls.certresolver=myresolver"
       # Nginx in the Dockerfile serves on port 80
