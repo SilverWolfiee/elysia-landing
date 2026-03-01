@@ -1,1 +1,10 @@
-@import "tailwindcss"
+@import "tailwindcss";
+
+@theme {
+  --color-pink-400: #f472b6;
+  --color-pink-500: #ec4899;
+  --color-pink-600: #db2777;
+}
+
+/* Define the dark variant so Tailwind knows what 'dark:' means */
+@variant dark (&:where(.dark, .dark *));

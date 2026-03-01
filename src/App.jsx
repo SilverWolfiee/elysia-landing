@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   FaGithub,
   FaInstagram,
@@ -17,7 +17,7 @@ import { motion } from "framer-motion";
 import cirengPfp from "./assets/cirengavatar.png";
 import gnzyPfp from "./assets/goobah.jpg";
 import ahiruPfp from "./assets/clanker.png";
-import susien from "./assets/susien.jpg"
+import susien from "./assets/susien.jpg";
 
 // Import Game Logos here!
 import hsrLogo from "./assets/games/hsr.png";
@@ -33,17 +33,18 @@ import wuwa from "./assets/games/wuwa.png";
 // Animations
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
-  visible: {opacity: 1, y: 0, transition : { duration: 1, ease: "easeOut" }},
-}
+  visible: { opacity: 1, y: 0, transition: { duration: 1, ease: "easeOut" } },
+};
 
 const straggerContainer = {
-  hidden : {opacity: 1},
-  visible : {
+  hidden: { opacity: 1 },
+  visible: {
     opacity: 1,
-    transition : {
-      staggerChildren: 0.2
-    }  }
-}
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
 
 const MemberCard = ({
   name,
@@ -56,11 +57,21 @@ const MemberCard = ({
   isReversed,
 }) => (
   <motion.div
-    variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} className={`flex flex-col ${isReversed ? "md:flex-row-reverse" : "md:flex-row"} items-center gap-12 bg-white/70 backdrop-blur-lg border-2 border-pink-100 p-10 rounded-[3.5rem] shadow-xl shadow-pink-100/20 hover:border-pink-300 transition-all duration-500 group w-full`}
+    variants={fadeInUp}
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, margin: "-100px" }}
+    className={`flex flex-col ${
+      isReversed ? "md:flex-row-reverse" : "md:flex-row"
+    } items-center gap-12 bg-white/70 dark:bg-white/5 backdrop-blur-lg border-2 border-pink-100 dark:border-pink-900/50 p-10 rounded-[3.5rem] shadow-xl shadow-pink-100/20 dark:shadow-pink-900/10 hover:border-pink-400 dark:hover:border-pink-600 transition-all duration-500 group w-full`}
   >
-    {/* PFP Section*/}
-    <motion.div className="relative shrink-0" whileHover={{ scale: 1.05}} transition={{ type: "spring", stiffness: 300 }}>
-      <div className="w-48 h-48 md:w-64 md:h-64 rounded-[3rem] rotate-2 group-hover:rotate-0 transition-transform duration-500 overflow-hidden border-8 border-white shadow-2xl">
+    {/* PFP Section */}
+    <motion.div
+      className="relative shrink-0"
+      whileHover={{ scale: 1.05 }}
+      transition={{ type: "spring", stiffness: 300 }}
+    >
+      <div className="w-48 h-48 md:w-64 md:h-64 rounded-[3rem] rotate-2 group-hover:rotate-0 transition-transform duration-500 overflow-hidden border-8 border-white dark:border-gray-800 shadow-2xl">
         <img
           src={pfp}
           alt={name}
@@ -68,27 +79,41 @@ const MemberCard = ({
           style={{ imageRendering: "auto" }}
         />
       </div>
-      <motion.div animate={{ y: [0, -10, 0] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} className="absolute -bottom-4 -right-4 w-16 h-16 bg-pink-400 rounded-full flex items-center justify-center text-white text-2xl shadow-lg border-4 border-white">
+      <motion.div
+        animate={{ y: [0, -10, 0] }}
+        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute -bottom-4 -right-4 w-16 h-16 bg-pink-400 rounded-full flex items-center justify-center text-white text-2xl shadow-lg border-4 border-white dark:border-gray-800"
+      >
         ✨
       </motion.div>
     </motion.div>
 
     {/* Content Section */}
-    <div className={`flex-1 flex flex-col ${isReversed ? "md:items-end md:text-right" : "md:items-start md:text-left"} items-center text-center`}>
-      <h3 className="text-5xl font-black text-pink-600 mb-3 tracking-tighter">
+    <div
+      className={`flex-1 flex flex-col ${
+        isReversed
+          ? "md:items-end md:text-right"
+          : "md:items-start md:text-left"
+      } items-center text-center`}
+    >
+      <h3 className="text-5xl font-black text-pink-600 dark:text-pink-400 mb-3 tracking-tighter">
         {name}
       </h3>
-      <p className="text-pink-400 font-bold uppercase tracking-[0.3em] text-[10px] mb-6">
+      <p className="text-pink-400 dark:text-pink-500 font-bold uppercase tracking-[0.3em] text-[10px] mb-6">
         {role}
       </p>
 
       {/* Tech Stacks */}
-      <div className={`flex flex-wrap gap-4 mb-8 ${isReversed ? "md:justify-end" : "md:justify-start"} justify-center `}>
+      <div
+        className={`flex flex-wrap gap-4 mb-8 ${
+          isReversed ? "md:justify-end" : "md:justify-start"
+        } justify-center`}
+      >
         {tech.map((item, index) => (
           <motion.span
             key={index}
-            whileHover={{ y: -3, backgroundColor: "#fdf2f8"}}
-            className="bg-pink-50/50 border border-pink-100 text-pink-700 text-[12px] px-3 py-1 rounded-full font-black uppercase"
+            whileHover={{ y: -3 }}
+            className="bg-pink-50/50 dark:bg-pink-900/20 border border-pink-100 dark:border-pink-800/50 text-pink-700 dark:text-pink-300 text-[12px] px-3 py-1 rounded-full font-black uppercase"
           >
             {item}
           </motion.span>
@@ -97,39 +122,46 @@ const MemberCard = ({
 
       {/* Hobbies Section */}
       <div className="mb-6">
-        <p className="text-gray-400 text-[9px] font-black uppercase mb-3 tracking-widest">
+        <p className="text-gray-400 dark:text-gray-500 text-[9px] font-black uppercase mb-3 tracking-widest">
           Personal Hobbies
         </p>
-        <div className={`flex flex-wrap gap-x-6 gap-y-4 ${isReversed ? "md:flex-row-reverse" : "md:flex-row"} justify-center`}>
+        <div
+          className={`flex flex-wrap gap-x-6 gap-y-4 ${
+            isReversed ? "md:flex-row-reverse" : "md:flex-row"
+          } justify-center`}
+        >
           {hobbies.map((hobby, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, scale: 0.8}}
-              whileInView={{opacity: 1, scale: 1}}
-              transition={{ delay: index * 0.1}}
-              viewport={{once: true}}
-              className="flex items-center gap-2 text-pink-500 font-bold italic text-sm shrink-0"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="flex items-center gap-2 text-pink-500 dark:text-pink-400 font-bold italic text-sm shrink-0"
             >
-              <motion.span 
-                whileHover={{ y: -3, backgroundColor: "#fdf2f8" }} 
-                className="p-2 bg-white rounded-xl shadow-sm border border-pink-50"
+              <motion.span
+                whileHover={{ y: -3 }}
+                className="p-2 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-pink-50 dark:border-pink-900/30"
               >
                 {hobby.icon}
               </motion.span>
-              <span className="hidden sm:inline whitespace-nowrap">{hobby.label}</span>
+              <span className="hidden sm:inline whitespace-nowrap">
+                {hobby.label}
+              </span>
             </motion.div>
           ))}
         </div>
       </div>
 
       {/* Game Library Section */}
-      {/* Game Library Section - Conditional Links */}
-      <div className="mb-10 w-full">
-        <p className="text-gray-400 text-[9px] font-black uppercase mb-3 tracking-widest">
+      <div className="mb-11 w-full">
+        <p className="text-gray-400 dark:text-gray-500 text-[9px] font-black uppercase mb-3 tracking-widest">
           Game Library
         </p>
         <div
-          className={`flex flex-wrap gap-6 ${isReversed ? "md:justify-end" : "md:justify-start"} justify-center`}
+          className={`flex flex-wrap gap-6 ${
+            isReversed ? "md:justify-end" : "md:justify-start"
+          } justify-center`}
         >
           {games.map((game, index) => {
             const content = (
@@ -140,9 +172,13 @@ const MemberCard = ({
                 <img
                   src={game.logo}
                   alt={game.name}
-                  className={`w-10 h-10 object-contain ${game.link ? "drop-shadow-[0_0_8px_rgba(244,114,182,0.4)]" : ""}`}
+                  className={`w-10 h-10 object-contain ${
+                    game.link
+                      ? "drop-shadow-[0_0_8px_rgba(244,114,182,0.4)]"
+                      : ""
+                  }`}
                 />
-                <span className="absolute -top-8 bg-gray-800 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover/game:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-lg z-50">
+                <span className="absolute -top-8 bg-gray-800 dark:bg-gray-700 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover/game:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-lg z-50">
                   {game.link ? `View ${game.name} Profile` : game.name}
                 </span>
               </div>
@@ -163,6 +199,7 @@ const MemberCard = ({
           })}
         </div>
       </div>
+
       {/* Socials Section */}
       <div className="flex gap-4">
         {socials.map((social, index) => (
@@ -171,7 +208,7 @@ const MemberCard = ({
             href={social.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-12 h-12 rounded-2xl bg-white border border-pink-100 flex items-center justify-center text-pink-400 hover:bg-pink-500 hover:text-white hover:-translate-y-1 transition-all duration-300 shadow-sm"
+            className="w-12 h-12 rounded-2xl bg-white dark:bg-gray-800 border border-pink-100 dark:border-pink-900/50 flex items-center justify-center text-pink-400 hover:bg-pink-500 hover:text-white hover:-translate-y-1 transition-all duration-300 shadow-sm"
           >
             <span className="text-xl">{social.icon}</span>
           </a>
@@ -182,6 +219,35 @@ const MemberCard = ({
 );
 
 const ElysiaLandingPage = () => {
+  const [darkMode, setDarkMode] = useState(() => {
+    try {
+      const savedTheme = localStorage.getItem("theme");
+      return savedTheme === "dark";
+    } catch {
+      return false;
+    }
+  });
+
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [darkMode]);
+
+  const toggleDarkMode = () => {
+    setDarkMode((prev) => {
+      const newMode = !prev;
+      try {
+        localStorage.setItem("theme", newMode ? "dark" : "light");
+      } catch {
+        console.log("Error")
+      }
+      return newMode;
+    });
+  };
+
   const members = [
     {
       name: "SilverWolf",
@@ -203,7 +269,11 @@ const ElysiaLandingPage = () => {
         { label: "Billiards", icon: <GiEightBall /> },
       ],
       games: [
-        { name: "HSR", logo: hsrLogo, link: "https://enka.network/hsr/800279846/" },
+        {
+          name: "HSR",
+          logo: hsrLogo,
+          link: "https://enka.network/hsr/800279846/",
+        },
         {
           name: "Osu",
           logo: osuLogo,
@@ -234,7 +304,6 @@ const ElysiaLandingPage = () => {
         { label: "Badminton", icon: <GiShuttlecock /> },
         { label: "Billiards", icon: <GiEightBall /> },
         { label: "Riding-Motorbikes", icon: <FaMotorcycle /> },
-        
       ],
       games: [
         {
@@ -277,7 +346,11 @@ const ElysiaLandingPage = () => {
         { label: "Table Tennis", icon: <FaTableTennis /> },
       ],
       games: [
-        { name: "Valorant", logo: pidorant, link: "https://tracker.gg/valorant/profile/riot/AhiruSareas%23Ahiru/overview?platform=pc&playlist=competitive&season=3ea2b318-423b-cf86-25da-7cbb0eefbe2d" },
+        {
+          name: "Valorant",
+          logo: pidorant,
+          link: "https://tracker.gg/valorant/profile/riot/AhiruSareas%23Ahiru/overview?platform=pc&playlist=competitive&season=3ea2b318-423b-cf86-25da-7cbb0eefbe2d",
+        },
         { name: "PUBGM", logo: pubgm },
         { name: "Minecraft", logo: mcLogo },
         { name: "Magic Chess", logo: goggog },
@@ -296,12 +369,10 @@ const ElysiaLandingPage = () => {
       tech: ["Calculator", "Spreadsheets"],
       pfp: susien,
       hobbies: [
-        
         { label: "Gaming", icon: <FaGamepad /> },
         { label: "Billiards", icon: <GiEightBall /> },
         { label: "Badminton", icon: <GiShuttlecock /> },
-        { label: "Guitar" , icon: <FaGuitar /> },
-        
+        { label: "Guitar", icon: <FaGuitar /> },
       ],
       games: [
         { name: "HSR", logo: hsrLogo },
@@ -318,40 +389,62 @@ const ElysiaLandingPage = () => {
       ],
     },
   ];
-  
 
   return (
-    <div className="min-h-screen bg-[#fefaff] text-gray-800 font-sans selection:bg-pink-200">
+    <div className="min-h-screen bg-[#fefaff] dark:bg-[#0f0f14] text-gray-800 dark:text-gray-200 font-sans selection:bg-pink-200 dark:selection:bg-pink-900">
       {/* Header */}
-      <motion.header variants={straggerContainer} initial="hidden" animate="visible" className="py-24 px-6 text-center">
-        <motion.h1 variants={fadeInUp} className="text-6xl md:text-8xl font-black text-pink-400 mb-4 drop-shadow-sm tracking-tighter">
+      <motion.header
+        variants={straggerContainer}
+        initial="hidden"
+        animate="visible"
+        className="py-24 px-6 text-center"
+      >
+        <button
+          onClick={toggleDarkMode}
+          className="fixed top-6 right-6 px-4 py-2 rounded-full bg-pink-400 dark:bg-pink-600 text-pink-300 font-bold shadow-md hover:scale-105 transition"
+        >
+          {darkMode ? "☀️ Light" : "🌙 Dark"}
+        </button>
+        <motion.h1
+          variants={fadeInUp}
+          className="text-6xl md:text-8xl font-black text-pink-400 mb-4 drop-shadow-sm tracking-tighter"
+        >
           Elysia<span className="text-pink-500">vernight</span>
         </motion.h1>
-        <motion.p variants={fadeInUp} className="text-pink-300 font-bold italic tracking-widest text-lg">
-          Hi~ ✨ 
+        <motion.p
+          variants={fadeInUp}
+          className="text-pink-300 font-bold italic tracking-widest text-lg"
+        >
+          Hi~ ✨
         </motion.p>
       </motion.header>
 
       <main className="max-w-6xl mx-auto px-6 space-y-20 pb-32">
         {/* What is Section */}
-        <motion.section initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="bg-white/80 backdrop-blur-sm border-2 border-pink-100 rounded-[3rem] p-12 shadow-sm text-center">
-          <h2 className="text-3xl font-black text-pink-500 mb-6 uppercase tracking-tight">
+        <motion.section
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="bg-white/80 dark:bg-white/5 backdrop-blur-sm border-2 border-pink-100 dark:border-pink-900/50 rounded-[3rem] p-12 shadow-sm text-center"
+        >
+          <h2 className="text-3xl font-black text-pink-500 dark:text-pink-400 mb-6 uppercase tracking-tight">
             What is Elysiavernight?
           </h2>
-          <p className="text-gray-500 text-xl italic max-w-3xl mx-auto leading-relaxed">
+          <p className="text-gray-500 dark:text-gray-400 text-xl italic max-w-3xl mx-auto leading-relaxed">
             A team of 4 dongo's consisting of SilverWolf, Gnzyyyyyyy,
-            AhiruSareas and Cryscwl. Lowkey don't even know how we got close bleh but
-            anyways.
+            AhiruSareas and Cryscwl. Lowkey don't even know how we got close
+            bleh but anyways.
           </p>
         </motion.section>
 
         {/* Members Section */}
         <section className="space-y-16">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-black text-pink-500">
+            <h2 className="text-4xl font-black text-pink-500 dark:text-pink-400">
               Meet the Members
             </h2>
-            <p className="text-pink-300 font-bold tracking-widest mt-2 uppercase">
+            <p className="text-pink-300 dark:text-pink-600 font-bold tracking-widest mt-2 uppercase">
               The 'dongo' Crew
             </p>
           </div>
@@ -365,17 +458,17 @@ const ElysiaLandingPage = () => {
       </main>
 
       {/* Footer */}
-      <footer className="py-16 text-center border-t border-pink-100 bg-white">
-        <div className="flex justify-center gap-2 mb-4 text-pink-200">
+      <footer className="py-16 text-center border-t border-pink-100 dark:border-pink-900/50 bg-white dark:bg-[#0c0c11]">
+        <div className="flex justify-center gap-2 mb-4 text-pink-200 dark:text-pink-800">
           🌸 🌸 🌸
         </div>
-        <p className="text-pink-400 font-black italic mb-2 tracking-tighter">
+        <p className="text-pink-400 dark:text-pink-500 font-black italic mb-2 tracking-tighter">
           ELYSIAVERNIGHT
         </p>
-        <p className="text-gray-400 font-bold uppercase tracking-[0.3em] text-[10px]">
+        <p className="text-gray-400 dark:text-gray-500 font-bold uppercase tracking-[0.3em] text-[10px]">
           Powered by <span className="text-pink-600">DewaVPS</span>
         </p>
-        <p className="text-gray-400 font-bold uppercase tracking-[0.3em] text-[10px] mt-2">
+        <p className="text-gray-400 dark:text-gray-500 font-bold uppercase tracking-[0.3em] text-[10px] mt-2">
           © 2026 ELYSIAVERNIGHT All Rights Reserved
         </p>
       </footer>
