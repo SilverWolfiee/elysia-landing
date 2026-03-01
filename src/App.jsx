@@ -8,11 +8,14 @@ import {
   FaCode,
   FaUtensils,
   FaMotorcycle,
+  FaTableTennis,
+  FaGuitar,
 } from "react-icons/fa";
 import { GiEightBall, GiShuttlecock } from "react-icons/gi";
+import { motion } from "framer-motion";
 // Member PFPs
 import cirengPfp from "./assets/cirengavatar.png";
-import gnzyPfp from "./assets/sponsor.png";
+import gnzyPfp from "./assets/goobah.jpg";
 import ahiruPfp from "./assets/clanker.png";
 import susien from "./assets/susien.jpg"
 
@@ -25,6 +28,22 @@ import pubgm from "./assets/games/pubgm.webp";
 import mlbb from "./assets/games/mlbb.webp";
 import goggog from "./assets/games/mcgogo.jpeg";
 import pidorant from "./assets/games/pidorant.png";
+import wuwa from "./assets/games/wuwa.png";
+
+// Animations
+const fadeInUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {opacity: 1, y: 0, transition : { duration: 1, ease: "easeOut" }},
+}
+
+const straggerContainer = {
+  hidden : {opacity: 1},
+  visible : {
+    opacity: 1,
+    transition : {
+      staggerChildren: 0.2
+    }  }
+}
 
 const MemberCard = ({
   name,
@@ -36,11 +55,11 @@ const MemberCard = ({
   games,
   isReversed,
 }) => (
-  <div
-    className={`flex flex-col ${isReversed ? "md:flex-row-reverse" : "md:flex-row"} items-center gap-12 bg-white/70 backdrop-blur-lg border-2 border-pink-100 p-10 rounded-[3.5rem] shadow-xl shadow-pink-100/20 hover:border-pink-300 transition-all duration-500 group w-full`}
+  <motion.div
+    variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} className={`flex flex-col ${isReversed ? "md:flex-row-reverse" : "md:flex-row"} items-center gap-12 bg-white/70 backdrop-blur-lg border-2 border-pink-100 p-10 rounded-[3.5rem] shadow-xl shadow-pink-100/20 hover:border-pink-300 transition-all duration-500 group w-full`}
   >
     {/* PFP Section*/}
-    <div className="relative shrink-0">
+    <motion.div className="relative shrink-0" whileHover={{ scale: 1.05}} transition={{ type: "spring", stiffness: 300 }}>
       <div className="w-48 h-48 md:w-64 md:h-64 rounded-[3rem] rotate-2 group-hover:rotate-0 transition-transform duration-500 overflow-hidden border-8 border-white shadow-2xl">
         <img
           src={pfp}
@@ -49,16 +68,14 @@ const MemberCard = ({
           style={{ imageRendering: "auto" }}
         />
       </div>
-      <div className="absolute -bottom-4 -right-4 w-16 h-16 bg-pink-400 rounded-full flex items-center justify-center text-white text-2xl shadow-lg border-4 border-white">
+      <motion.div animate={{ y: [0, -10, 0] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} className="absolute -bottom-4 -right-4 w-16 h-16 bg-pink-400 rounded-full flex items-center justify-center text-white text-2xl shadow-lg border-4 border-white">
         ✨
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
 
     {/* Content Section */}
-    <div
-      className={`flex-1 flex flex-col ${isReversed ? "md:items-end md:text-right" : "md:items-start md:text-left"} items-center text-center`}
-    >
-      <h3 className="text-5xl font-black text-pink-600 mb-1 tracking-tighter">
+    <div className={`flex-1 flex flex-col ${isReversed ? "md:items-end md:text-right" : "md:items-start md:text-left"} items-center text-center`}>
+      <h3 className="text-5xl font-black text-pink-600 mb-3 tracking-tighter">
         {name}
       </h3>
       <p className="text-pink-400 font-bold uppercase tracking-[0.3em] text-[10px] mb-6">
@@ -66,16 +83,15 @@ const MemberCard = ({
       </p>
 
       {/* Tech Stacks */}
-      <div
-        className={`flex flex-wrap gap-4 mb-8 ${isReversed ? "md:justify-end" : "md:justify-start"} justify-center`}
-      >
+      <div className={`flex flex-wrap gap-4 mb-8 ${isReversed ? "md:justify-end" : "md:justify-start"} justify-center `}>
         {tech.map((item, index) => (
-          <span
+          <motion.span
             key={index}
+            whileHover={{ y: -3, backgroundColor: "#fdf2f8"}}
             className="bg-pink-50/50 border border-pink-100 text-pink-700 text-[12px] px-3 py-1 rounded-full font-black uppercase"
           >
             {item}
-          </span>
+          </motion.span>
         ))}
       </div>
 
@@ -84,19 +100,24 @@ const MemberCard = ({
         <p className="text-gray-400 text-[9px] font-black uppercase mb-3 tracking-widest">
           Personal Hobbies
         </p>
-        <div
-          className={`flex gap-6 ${isReversed ? "md:flex-row-reverse" : "md:flex-row"} justify-center`}
-        >
+        <div className={`flex flex-wrap gap-x-6 gap-y-4 ${isReversed ? "md:flex-row-reverse" : "md:flex-row"} justify-center`}>
           {hobbies.map((hobby, index) => (
-            <div
+            <motion.div
               key={index}
-              className="flex items-center gap-2 text-pink-500 font-bold italic text-sm"
+              initial={{ opacity: 0, scale: 0.8}}
+              whileInView={{opacity: 1, scale: 1}}
+              transition={{ delay: index * 0.1}}
+              viewport={{once: true}}
+              className="flex items-center gap-2 text-pink-500 font-bold italic text-sm shrink-0"
             >
-              <span className="p-2 bg-white rounded-xl shadow-sm border border-pink-50">
+              <motion.span 
+                whileHover={{ y: -3, backgroundColor: "#fdf2f8" }} 
+                className="p-2 bg-white rounded-xl shadow-sm border border-pink-50"
+              >
                 {hobby.icon}
-              </span>
-              <span className="hidden sm:inline">{hobby.label}</span>
-            </div>
+              </motion.span>
+              <span className="hidden sm:inline whitespace-nowrap">{hobby.label}</span>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -157,7 +178,7 @@ const MemberCard = ({
         ))}
       </div>
     </div>
-  </div>
+  </motion.div>
 );
 
 const ElysiaLandingPage = () => {
@@ -182,7 +203,7 @@ const ElysiaLandingPage = () => {
         { label: "Billiards", icon: <GiEightBall /> },
       ],
       games: [
-        { name: "HSR", logo: hsrLogo },
+        { name: "HSR", logo: hsrLogo, link: "https://enka.network/hsr/800279846/" },
         {
           name: "Osu",
           logo: osuLogo,
@@ -213,9 +234,19 @@ const ElysiaLandingPage = () => {
         { label: "Badminton", icon: <GiShuttlecock /> },
         { label: "Billiards", icon: <GiEightBall /> },
         { label: "Riding-Motorbikes", icon: <FaMotorcycle /> },
+        
       ],
       games: [
-        { name: "Valorant", logo: pidorant },
+        {
+          name: "HSR",
+          logo: hsrLogo,
+          link: "https://enka.network/hsr/807764119/",
+        },
+        {
+          name: "Valorant",
+          logo: pidorant,
+          link: "https://tracker.gg/valorant/profile/riot/gnzyyyyyyy%20%E6%89%BF%23Genzy/overview?platform=pc&playlist=competitive&season=3ea2b318-423b-cf86-25da-7cbb0eefbe2d",
+        },
         {
           name: "Osu",
           logo: osuLogo,
@@ -243,9 +274,10 @@ const ElysiaLandingPage = () => {
         { label: "Gaming", icon: <FaGamepad /> },
         { label: "Billiards", icon: <GiEightBall /> },
         { label: "Riding-Motorbikes", icon: <FaMotorcycle /> },
+        { label: "Table Tennis", icon: <FaTableTennis /> },
       ],
       games: [
-        { name: "Valorant", logo: pidorant },
+        { name: "Valorant", logo: pidorant, link: "https://tracker.gg/valorant/profile/riot/AhiruSareas%23Ahiru/overview?platform=pc&playlist=competitive&season=3ea2b318-423b-cf86-25da-7cbb0eefbe2d" },
         { name: "PUBGM", logo: pubgm },
         { name: "Minecraft", logo: mcLogo },
         { name: "Magic Chess", logo: goggog },
@@ -260,17 +292,20 @@ const ElysiaLandingPage = () => {
     },
     {
       name: "Cryscwl",
-      role: "Tax-Collector",
-      tech: ["????"],
+      role: "Tax-Collector, Waifu Enjoyer",
+      tech: ["Calculator", "Spreadsheets"],
       pfp: susien,
       hobbies: [
         
         { label: "Gaming", icon: <FaGamepad /> },
         { label: "Billiards", icon: <GiEightBall /> },
+        { label: "Badminton", icon: <GiShuttlecock /> },
+        { label: "Guitar" , icon: <FaGuitar /> },
         
       ],
       games: [
         { name: "HSR", logo: hsrLogo },
+        { name: "Wuthering Wave", logo: wuwa },
         { name: "Minecraft", logo: mcLogo },
         { name: "Magic Chess", logo: goggog },
         { name: "Mobile Legends", logo: mlbb },
@@ -288,18 +323,18 @@ const ElysiaLandingPage = () => {
   return (
     <div className="min-h-screen bg-[#fefaff] text-gray-800 font-sans selection:bg-pink-200">
       {/* Header */}
-      <header className="py-24 px-6 text-center">
-        <h1 className="text-6xl md:text-8xl font-black text-pink-400 mb-4 drop-shadow-sm tracking-tighter">
+      <motion.header variants={straggerContainer} initial="hidden" animate="visible" className="py-24 px-6 text-center">
+        <motion.h1 variants={fadeInUp} className="text-6xl md:text-8xl font-black text-pink-400 mb-4 drop-shadow-sm tracking-tighter">
           Elysia<span className="text-pink-500">vernight</span>
-        </h1>
-        <p className="text-pink-300 font-bold italic tracking-widest text-lg">
-          "Hi~ ✨"
-        </p>
-      </header>
+        </motion.h1>
+        <motion.p variants={fadeInUp} className="text-pink-300 font-bold italic tracking-widest text-lg">
+          Hi~ ✨ 
+        </motion.p>
+      </motion.header>
 
       <main className="max-w-6xl mx-auto px-6 space-y-20 pb-32">
         {/* What is Section */}
-        <section className="bg-white/80 backdrop-blur-sm border-2 border-pink-100 rounded-[3rem] p-12 shadow-sm text-center">
+        <motion.section initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="bg-white/80 backdrop-blur-sm border-2 border-pink-100 rounded-[3rem] p-12 shadow-sm text-center">
           <h2 className="text-3xl font-black text-pink-500 mb-6 uppercase tracking-tight">
             What is Elysiavernight?
           </h2>
@@ -308,7 +343,7 @@ const ElysiaLandingPage = () => {
             AhiruSareas and Cryscwl. Lowkey don't even know how we got close bleh but
             anyways.
           </p>
-        </section>
+        </motion.section>
 
         {/* Members Section */}
         <section className="space-y-16">
@@ -339,6 +374,9 @@ const ElysiaLandingPage = () => {
         </p>
         <p className="text-gray-400 font-bold uppercase tracking-[0.3em] text-[10px]">
           Powered by <span className="text-pink-600">DewaVPS</span>
+        </p>
+        <p className="text-gray-400 font-bold uppercase tracking-[0.3em] text-[10px] mt-2">
+          © 2026 ELYSIAVERNIGHT All Rights Reserved
         </p>
       </footer>
     </div>
