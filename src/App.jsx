@@ -14,6 +14,7 @@ import { GiEightBall, GiShuttlecock } from "react-icons/gi";
 import cirengPfp from "./assets/cirengavatar.png";
 import gnzyPfp from "./assets/sponsor.png";
 import ahiruPfp from "./assets/clanker.png";
+import susien from "./assets/susien.jpg"
 
 // Import Game Logos here!
 import hsrLogo from "./assets/games/hsr.png";
@@ -257,7 +258,32 @@ const ElysiaLandingPage = () => {
         },
       ],
     },
+    {
+      name: "Cryscwl",
+      role: "Tax-Collector",
+      tech: ["????"],
+      pfp: susien,
+      hobbies: [
+        
+        { label: "Gaming", icon: <FaGamepad /> },
+        { label: "Billiards", icon: <GiEightBall /> },
+        
+      ],
+      games: [
+        { name: "HSR", logo: hsrLogo },
+        { name: "Minecraft", logo: mcLogo },
+        { name: "Magic Chess", logo: goggog },
+        { name: "Mobile Legends", logo: mlbb },
+      ],
+      socials: [
+        {
+          icon: <FaInstagram />,
+          link: "https://www.instagram.com/peterbradlee_wiesi/",
+        },
+      ],
+    },
   ];
+  
 
   return (
     <div className="min-h-screen bg-[#fefaff] text-gray-800 font-sans selection:bg-pink-200">
@@ -278,8 +304,8 @@ const ElysiaLandingPage = () => {
             What is Elysiavernight?
           </h2>
           <p className="text-gray-500 text-xl italic max-w-3xl mx-auto leading-relaxed">
-            A team of 3 dongo's consisting of SilverWolf, Gnzyyyyyyy and
-            AhiruSareas. Lowkey don't even know how we got close bleh but
+            A team of 4 dongo's consisting of SilverWolf, Gnzyyyyyyy,
+            AhiruSareas and Cryscwl. Lowkey don't even know how we got close bleh but
             anyways.
           </p>
         </section>
