@@ -407,18 +407,7 @@ const ElysiaLandingPage = () => {
         animate="visible"
         className="py-24 px-6 text-center"
       >
-        <motion.img
-          variants={fadeInUp}
-          src="/elylogo8bit.png"
-          alt="logo"
-          className="absolute top-15 left-105 w-35 h-35 md:w-44 md:h-44 object-cover rounded-xl shadow-lg"
-        />
-        <motion.img
-          variants={fadeInUp}
-          src="/amphoreus.png"
-          alt="logo"
-          className="absolute top-15 right-105 w-35 h-35 md:w-44 md:h-44 object-cover rounded-xl shadow-lg"
-        />
+        
         <button
           onClick={toggleDarkMode}
           className="fixed top-6 right-6 px-4 py-2 rounded-full bg-pink-400 dark:bg-pink-600 text-pink-300 font-bold shadow-md hover:scale-105 transition"
