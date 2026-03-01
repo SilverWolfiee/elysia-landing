@@ -15,8 +15,8 @@ import { GiEightBall, GiShuttlecock } from "react-icons/gi";
 import { motion } from "framer-motion";
 // Member PFPs
 import cirengPfp from "./assets/cirengavatar.png";
-import gnzyPfp from "./assets/goobah.jpg";
-import ahiruPfp from "./assets/clanker.png";
+import gnzyPfp from "./assets/ayame.jpeg";
+import ahiruPfp from "./assets/sareas.jpeg";
 import susien from "./assets/susien.jpg";
 
 // Import Game Logos here!
@@ -242,7 +242,7 @@ const ElysiaLandingPage = () => {
       try {
         localStorage.setItem("theme", newMode ? "dark" : "light");
       } catch {
-        console.log("Error")
+        console.log("Error");
       }
       return newMode;
     });
@@ -251,7 +251,7 @@ const ElysiaLandingPage = () => {
   const members = [
     {
       name: "SilverWolf",
-      role: "Founder, Backend-dev, Troller, Support",
+      role: "Founder, Backend-dev, Troller",
       tech: [
         "ElysiaJS",
         "Bun",
@@ -296,7 +296,15 @@ const ElysiaLandingPage = () => {
     {
       name: "Gnzyyyyyyy",
       role: "Fullstack-dev, Dongo, Concrete-maker",
-      tech: ["Java", "Springboot", "React", "Next.js", "PostgreSQL", "MongoDB"],
+      tech: [
+        "Java",
+        "Springboot",
+        "React",
+        "Next.js",
+        "PostgreSQL",
+        "MongoDB",
+        "C++",
+      ],
       pfp: gnzyPfp,
       hobbies: [
         { label: "Coding", icon: <FaCode /> },
@@ -399,6 +407,18 @@ const ElysiaLandingPage = () => {
         animate="visible"
         className="py-24 px-6 text-center"
       >
+        <motion.img
+          variants={fadeInUp}
+          src="/elylogo8bit.png"
+          alt="logo"
+          className="absolute top-15 left-105 w-35 h-35 md:w-44 md:h-44 object-cover rounded-xl shadow-lg"
+        />
+        <motion.img
+          variants={fadeInUp}
+          src="/amphoreus.png"
+          alt="logo"
+          className="absolute top-15 right-105 w-35 h-35 md:w-44 md:h-44 object-cover rounded-xl shadow-lg"
+        />
         <button
           onClick={toggleDarkMode}
           className="fixed top-6 right-6 px-4 py-2 rounded-full bg-pink-400 dark:bg-pink-600 text-pink-300 font-bold shadow-md hover:scale-105 transition"
