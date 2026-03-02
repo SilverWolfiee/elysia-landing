@@ -399,7 +399,7 @@ const ElysiaLandingPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#fefaff] dark:bg-[#0f0f14] text-gray-800 dark:text-gray-200 font-sans selection:bg-pink-200 dark:selection:bg-pink-900">
+    <div className="min-h-screen bg-[#fefaff] duration-500 dark:bg-[#0f0f14] text-gray-800 dark:text-gray-200 font-sans selection:bg-pink-200 dark:selection:bg-pink-900">
       {/* Header */}
       <motion.header
         variants={straggerContainer}
