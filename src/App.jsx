@@ -243,25 +243,7 @@ const ElysiaLandingPage = () => {
     }
   });
 
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [darkMode]);
-
-  const toggleDarkMode = () => {
-    setDarkMode((prev) => {
-      const newMode = !prev;
-      try {
-        localStorage.setItem("theme", newMode ? "dark" : "light");
-      } catch {
-        console.log("Error");
-      }
-      return newMode;
-    });
-  };
+  
 
   const members = [
     {
@@ -426,13 +408,6 @@ const ElysiaLandingPage = () => {
         animate="visible"
         className="py-24 px-6 text-center"
       >
-        
-        <button
-          onClick={toggleDarkMode}
-          className="fixed top-6 right-6 px-4 py-2 rounded-full bg-pink-400 dark:bg-pink-600 text-pink-300 font-bold shadow-md hover:scale-105 transition"
-        >
-          {darkMode ? "☀️ Light" : "🌙 Dark"}
-        </button>
         <motion.h1
           variants={fadeInUp}
           className="text-6xl md:text-8xl font-black text-pink-400 mb-4 drop-shadow-sm tracking-tighter"

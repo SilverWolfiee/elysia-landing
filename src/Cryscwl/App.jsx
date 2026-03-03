@@ -30,7 +30,7 @@ import {
   SiZig,
 } from "react-icons/si";
 
-import ahiruPfp from "../assets/sareas.jpeg";
+import Pfp from "../assets/susien.jpg";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -118,7 +118,7 @@ const ProjectCard = ({
 );
 
 
-const AhiruPage = () => {
+const PTRPage = () => {
   return (
     <div className="min-h-screen bg-[#fefaff] dark:bg-[#0f0f14] text-gray-800 dark:text-gray-200 font-sans selection:bg-pink-200">
      
@@ -143,8 +143,8 @@ const AhiruPage = () => {
           >
             <div className="w-48 h-48 md:w-56 md:h-56 rounded-[3.5rem] overflow-hidden border-8 border-white dark:border-gray-800 shadow-2xl rotate-3">
               <img
-                src={ahiruPfp}
-                alt="Ahiru-Sareas"
+                src={Pfp}
+                alt="Kriswirl"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -158,7 +158,7 @@ const AhiruPage = () => {
             animate={{ y: 0, opacity: 1 }}
             className="text-6xl md:text-8xl font-black text-pink-600 dark:text-pink-400 tracking-tighter mb-4"
           >
-            Ahiru Sareas
+            Cryscwl
           </motion.h1>
           <motion.p
             initial={{ y: 20, opacity: 0 }}
@@ -166,7 +166,7 @@ const AhiruPage = () => {
             transition={{ delay: 0.1 }}
             className="text-pink-400 dark:text-pink-500 font-bold uppercase tracking-[0.4em] text-sm"
           >
-            Head-Chef | Main-Builder(Minecraft) | Idea-Initiator
+           Business Manager | Accountant
           </motion.p>
         </div>
       </header>
@@ -184,7 +184,7 @@ const AhiruPage = () => {
               {/* 01 */}
             </div>
             <h2 className="text-3xl font-black text-pink-500 mb-6 text-center">
-              Hah? Iya bang Atlas Clank Clank
+              Everywhere i go, i Simp for Waifus
               <br />
               OHH MAI GADDDD
              
@@ -260,7 +260,7 @@ const AhiruPage = () => {
             </h3>
             <div className="grid grid-cols-2 gap-4">
               <a
-                href="https://www.instagram.com/ahiru_sareas/"
+                href="https://www.instagram.com/peterbradlee_wiesi/"
                 target="_blank"
                 className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-800 rounded-2xl hover:bg-pink-500 hover:text-white transition-all group"
               >
@@ -291,4 +291,4 @@ const AhiruPage = () => {
   );
 };
 
-export default AhiruPage;
+export default PTRPage;

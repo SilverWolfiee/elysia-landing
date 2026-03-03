@@ -2,9 +2,9 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
-import { 
-  FaCode, FaGamepad, FaMotorcycle, FaArrowLeft, 
-  FaGithub, FaInstagram, FaDatabase, FaServer, FaTiktok 
+import {
+  FaCode, FaGamepad, FaMotorcycle, FaArrowLeft,
+  FaGithub, FaInstagram, FaDatabase, FaServer, FaTiktok
 } from "react-icons/fa";
 
 import { GiShuttlecock, GiEightBall, GiConcreteBag } from "react-icons/gi";
@@ -19,7 +19,7 @@ const fadeInUp = {
 };
 
 const SkillBadge = ({ icon, label }) => (
-  <motion.div 
+  <motion.div
     whileHover={{ scale: 1.05, y: -5 }}
     className="flex flex-col items-center gap-3 p-6 bg-white/50 dark:bg-white/5 backdrop-blur-md border border-pink-100 dark:border-pink-900/30 rounded-3xl shadow-sm hover:border-pink-400 transition-colors"
   >
@@ -31,19 +31,19 @@ const SkillBadge = ({ icon, label }) => (
 const GnzyPage = () => {
   return (
     <div className="min-h-screen bg-[#fefaff] dark:bg-[#0f0f14] text-gray-800 dark:text-gray-200 font-sans selection:bg-pink-200">
-      
+
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 px-6 py-6 flex justify-between items-center pointer-events-none">
         <Link to="/" className="pointer-events-auto group flex items-center gap-3 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md px-6 py-3 rounded-full border border-pink-100 dark:border-pink-900/50 shadow-lg hover:bg-pink-500 hover:text-white transition-all">
           <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
-          <span className="font-bold text-sm">Back to Crew</span>
+          <span className="font-bold text-sm">Back to Main Page</span>
         </Link>
       </nav>
 
       {/* Hero Section */}
       <header className="relative pt-32 pb-20 px-6 overflow-hidden">
         <div className="max-w-6xl mx-auto flex flex-col items-center text-center">
-          <motion.div 
+          <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             className="relative mb-8"
@@ -56,14 +56,14 @@ const GnzyPage = () => {
             </div>
           </motion.div>
 
-          <motion.h1 
+          <motion.h1
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             className="text-6xl md:text-8xl font-black text-pink-600 dark:text-pink-400 tracking-tighter mb-4"
           >
             Gnzyyyyyyy
           </motion.h1>
-          <motion.p 
+          <motion.p
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.1 }}
@@ -75,16 +75,19 @@ const GnzyPage = () => {
       </header>
 
       <main className="max-w-4xl mx-auto px-6 space-y-24 pb-32">
-        
+
         {/* About Section */}
         <motion.section variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
           <div className="bg-white/70 dark:bg-white/5 backdrop-blur-xl border-2 border-pink-100 dark:border-pink-900/50 p-10 rounded-[3rem] shadow-xl relative overflow-hidden">
             <div className="absolute top-0 right-0 p-8 text-pink-100 dark:text-pink-900/20 text-9xl font-black select-none pointer-events-non e">
               {/* 01 */}
             </div>
-            <h2 className="text-3xl font-black text-pink-500 mb-6 uppercase">Who is Gnzyyyyyyy?</h2>
+            <h2 className="text-3xl font-black text-pink-500 mb-6 text-center">
+              Audentes Fortuna Iuvat <br /> - Some Famous People -
+            </h2>
             <p className="text-xl text-gray-500 dark:text-gray-400 leading-relaxed italic">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
             </p>
           </div>
         </motion.section>
@@ -92,7 +95,7 @@ const GnzyPage = () => {
         {/* Tech Stack Grid */}
         <section className="space-y-8">
           <div className="flex items-center gap-4">
-            <h2 className="text-2xl font-black text-pink-500 uppercase tracking-tighter">Core Arsenal</h2>
+            <h2 className="text-2xl font-black text-pink-500 uppercase tracking-tighter">Tech-Stacks</h2>
             <div className="h-[2px] flex-1 bg-pink-100 dark:bg-pink-900/30"></div>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -104,10 +107,10 @@ const GnzyPage = () => {
             <SkillBadge icon={<SiReact />} label="React" />
           </div>
         </section>
-
+        <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-pink-100 dark:via-pink-900/30 to-transparent my-16" />
         {/* Hobbies / Lifestyle */}
         <section className="grid md:grid-cols-2 gap-8">
-          <motion.div 
+          <motion.div
             variants={fadeInUp} initial="hidden" whileInView="visible"
             className="p-8 bg-pink-50/50 dark:bg-pink-950/20 rounded-[2.5rem] border border-pink-100 dark:border-pink-900/30"
           >
@@ -128,13 +131,16 @@ const GnzyPage = () => {
             </ul>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             variants={fadeInUp} initial="hidden" whileInView="visible"
+
             className="p-8 bg-white dark:bg-white/5 rounded-[2.5rem] border border-pink-100 dark:border-pink-900/30 shadow-sm"
           >
+
             <h3 className="text-lg font-black text-pink-500 uppercase mb-6 flex items-center gap-2">
-              <FaCode /> Connect
+              <FaCode /> Socials
             </h3>
+
             <div className="grid grid-cols-2 gap-4">
               <a href="https://github.com/gnzyyyyyyy" target="_blank" className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-800 rounded-2xl hover:bg-pink-500 hover:text-white transition-all group">
                 <FaGithub className="text-xl" />
@@ -142,7 +148,7 @@ const GnzyPage = () => {
               </a>
               <a href="https://www.instagram.com/gnzyyyyyyy/" target="_blank" className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-800 rounded-2xl hover:bg-pink-500 hover:text-white transition-all group">
                 <FaInstagram className="text-xl" />
-                <span className="font-bold text-sm">Insta</span>
+                <span className="font-bold text-sm">Instagram</span>
               </a>
               <a href="https://www.tiktok.com/@gnzyyyyyyy" target="_blank" className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-800 rounded-2xl hover:bg-pink-500 hover:text-white transition-all group">
                 <FaTiktok className="text-xl" />
