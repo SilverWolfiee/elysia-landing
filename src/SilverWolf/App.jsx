@@ -7,8 +7,8 @@ import {
     FaGithub, FaInstagram, FaMicrophone, FaTiktok, FaYoutube, FaGlobe, FaPlay, FaPause, FaVolumeUp, FaTwitter
 } from "react-icons/fa";
 
-import { GiShuttlecock, GiEightBall, GiConcreteBag } from "react-icons/gi";
-import { SiNodedotjs, SiBun, SiArchlinux, SiSqlite, SiReact, SiC, SiRust, SiZig } from "react-icons/si";
+import { GiEightBall} from "react-icons/gi";
+import { SiNodedotjs, SiBun, SiArchlinux, SiSqlite, SiReact, SiC, SiRust, SiZig, SiTailwindcss, SiJavascript, SiTypescript, SiHtml5, SiCss3 } from "react-icons/si";
 
 
 import cirengPfp from "../assets/cirengavatar.png";
@@ -102,6 +102,7 @@ const MusicPlayer = () => {
                 .then(() => setIsPlaying(true))
                 .catch(() => console.log("Waiting for Trailblazer interaction..."));
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const togglePlay = () => {
@@ -214,6 +215,7 @@ const SilverWolfPage = () => {
                         <h2 className="text-3xl font-black text-pink-500 mb-6 text-center">
                             Love is an Energy That Transcends dimensions of Time and Space.
                             <br />
+                            <br />
                             Even in a breeding ground of Destruction, There is always Love that finds the answer ❤️
                             <br />
                             <span className="text-xl opacity-70 italic font-medium mt-4 block">
@@ -223,7 +225,7 @@ const SilverWolfPage = () => {
                         <p className="text-xl text-gray-500 dark:text-gray-400 leading-relaxed italic">
                             Hi, I am SilverWolf, Also Known as Wolfie or SWolf Pờ Rào. I'm 19 years old with Specialty in Backend Development.
                             Started Programming With C now im Tackling Rust like it's An HSR MOC-12 Challenge. My Favorite Stack to use is ElysiaJS
-                            Paired with React(vite).
+                            Paired with React(vite) and Zig as my favorite low-level language.
                             <br/><br/>
                             Personally, For me, Cyrene is a role-model for me as she always reminds me that even in dire circumstances, there are hope. If you can't fulfill it today, Send it to tomorrow. 
                         </p>
@@ -245,6 +247,11 @@ const SilverWolfPage = () => {
                         <SkillBadge icon={<SiZig />} label="Zig-Zag-Goon" />
                         <SkillBadge icon={<SiRust />} label="Rust" />
                         <SkillBadge icon={<SiReact />} label="React" />
+                        <SkillBadge icon={<SiHtml5 />} label="Html5" />
+                        <SkillBadge icon={<SiCss3 />} label="CSS3" />
+                        <SkillBadge icon={<SiJavascript />} label="Javascript" />
+                        <SkillBadge icon={<SiTypescript />} label="Typescript" />
+                        <SkillBadge icon={<SiTailwindcss />} label="TailwindCss" />
                     </div>
                 </section>
                 {/* Projects Section */}
@@ -312,7 +319,8 @@ const SilverWolfPage = () => {
                                 { icon: <FaGamepad />, text: "Playing HSR" },
                                 { icon: <GiEightBall />, text: "Playing 8 Ball Pool" },
                                 { icon: <FaCode />, text: "Coding Random Projects" },
-                                { icon: <FaMicrophone />, text: "Singing Out Loud" }
+                                { icon: <FaMicrophone />, text: "Singing Out Loud" },
+                                
                             ].map((item, i) => (
                                 <li key={i} className="flex items-center gap-4 font-bold text-gray-600 dark:text-gray-300">
                                     <span className="p-2 bg-white dark:bg-gray-800 rounded-lg text-pink-400 shadow-sm">{item.icon}</span>
