@@ -5,6 +5,8 @@
   --color-pink-500: #ec4899;
   --color-pink-600: #db2777;
 }
-
+* {
+  @apply transition-colors duration-500;
+}
 /* Define the dark variant so Tailwind knows what 'dark:' means */
 @variant dark (&:where(.dark, .dark *));
