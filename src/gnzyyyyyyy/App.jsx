@@ -15,7 +15,7 @@ import {
   FaGlobe
 } from "react-icons/fa";
 
-import { GiShuttlecock, GiEightBall, GiConcreteBag } from "react-icons/gi";
+import { GiShuttlecock, GiEightBall, GiConcreteBag, GiGamepad } from "react-icons/gi";
 import {
   SiSpringboot,
   SiNextdotjs,
@@ -240,8 +240,10 @@ const GnzyPage = () => {
                   icon: <GiShuttlecock />,
                   text: "Smashing birds in Badminton",
                 },
-                { icon: <GiEightBall />, text: "Cleaning tables in Billiards" },
-                { icon: <FaMotorcycle />, text: "Riding into the sunset" },
+                { icon: <GiGamepad />, text: "Playing games" },
+                { icon: <GiEightBall />, text: "Breaking Every single cue ball" },
+                { icon: <FaMotorcycle />, text: "Riding around in ZX/XMAX" },
+                { icon: <GiPingPongBat />, text: "Playing Table Tennis during recess" },
               ].map((item, i) => (
                 <li
                   key={i}

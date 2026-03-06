@@ -18,7 +18,7 @@ import {
   FaUtensils
 } from "react-icons/fa";
 
-import { GiShuttlecock, GiEightBall, GiConcreteBag } from "react-icons/gi";
+import { GiShuttlecock, GiEightBall, GiConcreteBag, GiPingPongBat } from "react-icons/gi";
 import {
   SiNodedotjs,
   SiBun,
@@ -232,6 +232,8 @@ const AhiruPage = () => {
               {[
                 { icon: <FaGamepad />, text: "Playing Games" },
                 { icon: <GiEightBall />, text: "Playing 8 Ball Pool" },
+                { icon: <GiShuttlecock />, text: "Playing Badminton" },
+                { icon: <GiPingPongBat />, text: "Playing Table Tennis during recess" },
                 
               ].map((item, i) => (
                 <li
