@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import romanticStory from "../assets/Audios/New-Page.mp3";
+
 import {
   FaCode,
   FaGamepad,

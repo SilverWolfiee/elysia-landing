@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import romanticStory from "../assets/Audios/New-Page.mp3"
+import romanticStory from "../assets/Audios/PastReverie.mp3"
 import {
     FaCode, FaGamepad, FaArrowLeft,
     FaGithub, FaInstagram, FaMicrophone, FaTiktok, FaYoutube, FaGlobe, FaPlay, FaPause, FaVolumeUp, FaTwitter
@@ -128,7 +128,7 @@ const MusicPlayer = () => {
     return (
         <div className="fixed bottom-6 right-6 z-[100] flex flex-col items-end gap-2 group pointer-events-auto">
             <div className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md px-3 py-1 rounded-lg border border-pink-100 dark:border-pink-900/50 shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
-                <span className="text-[10px] font-black text-pink-500 uppercase tracking-tighter">New Page - HSR</span>
+                <span className="text-[10px] font-black text-pink-500 uppercase tracking-tighter">HOYOMIX - Ripples of Past Reverie</span>
             </div>
             <div className="flex items-center gap-4 bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl p-4 rounded-3xl border-2 border-pink-200 dark:border-pink-900/50 shadow-2xl">
 
@@ -216,7 +216,7 @@ const SilverWolfPage = () => {
                             Love is an Energy That Transcends dimensions of Time and Space.
                             <br />
                             <br />
-                            Even in a breeding ground of Destruction, There is always Love that finds the answer ❤️
+                            "Let humanity proof to you that even the breeding ground of destruction, can bloom with gentle flowers of Love"
                             <br />
                             <span className="text-xl opacity-70 italic font-medium mt-4 block">
                                 — Cyrene(HSR) & Amelia Brand(Interstellar)  —
