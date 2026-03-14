@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import Ravings from "../assets/Audios/Ravings.mp3"
 
 import {
   FaCode,
@@ -11,6 +12,9 @@ import {
   FaInstagram,
   FaDatabase,
   FaServer,
+  FaPlay,
+  FaVolumeUp,
+  FaPause,
   FaTiktok,
   FaGlobe
 } from "react-icons/fa";
@@ -43,6 +47,79 @@ const SkillBadge = ({ icon, label }) => (
     </span>
   </motion.div>
 );
+const MusicPlayer = () => {
+
+    const [volume, setVolume] = React.useState(() => {
+        const savedVolume = localStorage.getItem('music-volume');
+        return savedVolume !== null ? parseFloat(savedVolume) : 0.5;
+    });
+
+    const [isPlaying, setIsPlaying] = React.useState(false);
+    const audioRef = React.useRef(null);
+
+    React.useEffect(() => {
+        if (audioRef.current) {
+            audioRef.current.volume = volume;
+
+            audioRef.current.play()
+                .then(() => setIsPlaying(true))
+                .catch(() => console.log("Waiting for Trailblazer interaction..."));
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    const togglePlay = () => {
+        if (isPlaying) {
+            audioRef.current.pause();
+        } else {
+            audioRef.current.play();
+        }
+        setIsPlaying(!isPlaying);
+    };
+
+    const handleVolumeChange = (e) => {
+        const newVol = parseFloat(e.target.value);
+        setVolume(newVol);
+
+        if (audioRef.current) {
+            audioRef.current.volume = newVol;
+        }
+
+        localStorage.setItem('music-volume', newVol);
+    };
+
+    return (
+        <div className="fixed bottom-6 right-6 z-[100] flex flex-col items-end gap-2 group pointer-events-auto">
+            <div className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md px-3 py-1 rounded-lg border border-pink-100 dark:border-pink-900/50 shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                <span className="text-[10px] font-black text-pink-500 uppercase tracking-tighter">Ravings</span>
+            </div>
+            <div className="flex items-center gap-4 bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl p-4 rounded-3xl border-2 border-pink-200 dark:border-pink-900/50 shadow-2xl">
+
+                <audio ref={audioRef} src={Ravings} loop />
+
+                <button
+                    onClick={togglePlay}
+                    className="w-12 h-12 flex items-center justify-center bg-pink-500 text-white rounded-2xl hover:scale-110 active:scale-95 transition-all shadow-lg hover:bg-pink-600"
+                >
+                    {isPlaying ? <FaPause /> : <FaPlay className="ml-1" />}
+                </button>
+
+                <div className="flex items-center gap-2">
+                    <FaVolumeUp className="text-pink-400 text-sm" />
+                    <input
+                        type="range"
+                        min="0"
+                        max="1"
+                        step="0.01"
+                        value={volume}
+                        onChange={handleVolumeChange}
+                        className="w-24 h-1.5 bg-pink-100 dark:bg-pink-900/30 rounded-lg appearance-none cursor-pointer accent-pink-500"
+                    />
+                </div>
+            </div>
+        </div>
+    );
+};
 const ProjectCard = ({ title, description, githubLink, githubLink2, liveLink, tags }) => (
     <motion.div
         variants={fadeInUp}
@@ -99,7 +176,9 @@ const ProjectCard = ({ title, description, githubLink, githubLink2, liveLink, ta
 
 const GnzyPage = () => {
   return (
+    
     <div className="min-h-screen bg-[#fefaff] dark:bg-[#0f0f14] text-gray-800 dark:text-gray-200 font-sans selection:bg-pink-200">
+      <MusicPlayer />
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 px-6 py-6 flex justify-between items-center pointer-events-none">
         <Link
