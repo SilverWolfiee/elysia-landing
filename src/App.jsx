@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   FaGithub,
   FaInstagram,
@@ -22,8 +22,7 @@ import gnzyPfp from "./assets/ayame.jpeg";
 import ahiruPfp from "./assets/sareas.jpeg";
 import susien from "./assets/susien.jpg";
 
-// Member Portfolios
-import GnzyPage from "./gnzyyyyyyy/App";
+
 
 // Import Game Logos here!
 import hsrLogo from "./assets/games/hsr.png";
@@ -234,14 +233,7 @@ const MemberCard = ({
 );
 
 const ElysiaLandingPage = () => {
-  const [darkMode, setDarkMode] = useState(() => {
-    try {
-      const savedTheme = localStorage.getItem("theme");
-      return savedTheme === "dark";
-    } catch {
-      return false;
-    }
-  });
+ 
 
   
 

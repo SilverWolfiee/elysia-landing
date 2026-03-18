@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import Ravings from "../assets/Audios/Ravings.mp3"
+import Ravings from "../assets/Audios/Ravings.mp3";
 
 import {
   FaCode,
@@ -10,16 +10,20 @@ import {
   FaArrowLeft,
   FaGithub,
   FaInstagram,
-  FaDatabase,
-  FaServer,
   FaPlay,
   FaVolumeUp,
   FaPause,
   FaTiktok,
-  FaGlobe
+  FaGlobe,
 } from "react-icons/fa";
 
-import { GiShuttlecock, GiEightBall, GiConcreteBag, GiGamepad, GiPingPongBat } from "react-icons/gi";
+import {
+  GiShuttlecock,
+  GiEightBall,
+  GiConcreteBag,
+  GiGamepad,
+  GiPingPongBat,
+} from "react-icons/gi";
 import {
   SiSpringboot,
   SiNextdotjs,
@@ -48,135 +52,146 @@ const SkillBadge = ({ icon, label }) => (
   </motion.div>
 );
 const MusicPlayer = () => {
+  const [volume, setVolume] = React.useState(() => {
+    const savedVolume = localStorage.getItem("music-volume");
+    return savedVolume !== null ? parseFloat(savedVolume) : 0.5;
+  });
 
-    const [volume, setVolume] = React.useState(() => {
-        const savedVolume = localStorage.getItem('music-volume');
-        return savedVolume !== null ? parseFloat(savedVolume) : 0.5;
-    });
+  const [isPlaying, setIsPlaying] = React.useState(false);
+  const audioRef = React.useRef(null);
 
-    const [isPlaying, setIsPlaying] = React.useState(false);
-    const audioRef = React.useRef(null);
+  React.useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = volume;
 
-    React.useEffect(() => {
-        if (audioRef.current) {
-            audioRef.current.volume = volume;
+      audioRef.current
+        .play()
+        .then(() => setIsPlaying(true))
+        .catch(() => console.log("Waiting for Trailblazer interaction..."));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-            audioRef.current.play()
-                .then(() => setIsPlaying(true))
-                .catch(() => console.log("Waiting for Trailblazer interaction..."));
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+  const togglePlay = () => {
+    if (isPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
 
-    const togglePlay = () => {
-        if (isPlaying) {
-            audioRef.current.pause();
-        } else {
-            audioRef.current.play();
-        }
-        setIsPlaying(!isPlaying);
-    };
+  const handleVolumeChange = (e) => {
+    const newVol = parseFloat(e.target.value);
+    setVolume(newVol);
 
-    const handleVolumeChange = (e) => {
-        const newVol = parseFloat(e.target.value);
-        setVolume(newVol);
+    if (audioRef.current) {
+      audioRef.current.volume = newVol;
+    }
 
-        if (audioRef.current) {
-            audioRef.current.volume = newVol;
-        }
+    localStorage.setItem("music-volume", newVol);
+  };
 
-        localStorage.setItem('music-volume', newVol);
-    };
+  return (
+    <div className="fixed bottom-6 right-6 z-[100] flex flex-col items-end gap-2 group pointer-events-auto">
+      <div className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md px-3 py-1 rounded-lg border border-pink-100 dark:border-pink-900/50 shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
+        <span className="text-[10px] font-black text-pink-500 uppercase tracking-tighter">
+          Ravings
+        </span>
+      </div>
+      <div className="flex items-center gap-4 bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl p-4 rounded-3xl border-2 border-pink-200 dark:border-pink-900/50 shadow-2xl">
+        <audio ref={audioRef} src={Ravings} loop />
 
-    return (
-        <div className="fixed bottom-6 right-6 z-[100] flex flex-col items-end gap-2 group pointer-events-auto">
-            <div className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md px-3 py-1 rounded-lg border border-pink-100 dark:border-pink-900/50 shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
-                <span className="text-[10px] font-black text-pink-500 uppercase tracking-tighter">Ravings</span>
-            </div>
-            <div className="flex items-center gap-4 bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl p-4 rounded-3xl border-2 border-pink-200 dark:border-pink-900/50 shadow-2xl">
+        <button
+          onClick={togglePlay}
+          className="w-12 h-12 flex items-center justify-center bg-pink-500 text-white rounded-2xl hover:scale-110 active:scale-95 transition-all shadow-lg hover:bg-pink-600"
+        >
+          {isPlaying ? <FaPause /> : <FaPlay className="ml-1" />}
+        </button>
 
-                <audio ref={audioRef} src={Ravings} loop />
-
-                <button
-                    onClick={togglePlay}
-                    className="w-12 h-12 flex items-center justify-center bg-pink-500 text-white rounded-2xl hover:scale-110 active:scale-95 transition-all shadow-lg hover:bg-pink-600"
-                >
-                    {isPlaying ? <FaPause /> : <FaPlay className="ml-1" />}
-                </button>
-
-                <div className="flex items-center gap-2">
-                    <FaVolumeUp className="text-pink-400 text-sm" />
-                    <input
-                        type="range"
-                        min="0"
-                        max="1"
-                        step="0.01"
-                        value={volume}
-                        onChange={handleVolumeChange}
-                        className="w-24 h-1.5 bg-pink-100 dark:bg-pink-900/30 rounded-lg appearance-none cursor-pointer accent-pink-500"
-                    />
-                </div>
-            </div>
+        <div className="flex items-center gap-2">
+          <FaVolumeUp className="text-pink-400 text-sm" />
+          <input
+            type="range"
+            min="0"
+            max="1"
+            step="0.01"
+            value={volume}
+            onChange={handleVolumeChange}
+            className="w-24 h-1.5 bg-pink-100 dark:bg-pink-900/30 rounded-lg appearance-none cursor-pointer accent-pink-500"
+          />
         </div>
-    );
+      </div>
+    </div>
+  );
 };
-const ProjectCard = ({ title, description, githubLink, githubLink2, liveLink, tags }) => (
-    <motion.div
-        variants={fadeInUp}
-        whileHover={{ y: -10 }}
-        className="group p-8 bg-white/70 dark:bg-white/5 backdrop-blur-xl border-2 border-pink-100 dark:border-pink-900/50 rounded-[2.5rem] shadow-lg hover:border-pink-400 transition-all flex flex-col h-full"
-    >
-        <div className="flex justify-between items-start mb-4">
-            <h3 className="text-2xl font-black text-pink-600 dark:text-pink-400 tracking-tighter">{title}</h3>
-            <div className="flex gap-2">
-
-                <a
-                    href={githubLink}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="p-3 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-2xl hover:bg-pink-500 hover:text-white transition-all shadow-sm"
-                >
-                    <FaGithub className="text-xl" />
-                </a>
-                {githubLink2 && (
-                    <a
-                        href={githubLink2}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="p-3 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-2xl hover:bg-pink-500 hover:text-white transition-all shadow-sm"
-                        title="View Secondary Source"
-                    >
-                        <FaGithub className="text-xl" />
-                    </a>
-                )}
-                {liveLink && (
-                    <a
-                        href={liveLink}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="p-3 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-2xl hover:bg-pink-500 hover:text-white transition-all shadow-sm"
-                    >
-                        <FaGlobe className="text-xl" />
-                    </a>
-                )}
-            </div>
-        </div>
-        <p className="text-gray-600 dark:text-gray-400 font-medium leading-relaxed mb-6 flex-grow">
-            {description}
-        </p>
-        <div className="flex flex-wrap gap-2">
-            {tags.map((tag, i) => (
-                <span key={i} className="px-3 py-1 bg-pink-100 dark:bg-pink-900/30 text-pink-500 dark:text-pink-300 text-[10px] font-black uppercase tracking-widest rounded-full">
-                    {tag}
-                </span>
-            ))}
-        </div>
-    </motion.div>
+const ProjectCard = ({
+  title,
+  description,
+  githubLink,
+  githubLink2,
+  liveLink,
+  tags,
+}) => (
+  <motion.div
+    variants={fadeInUp}
+    whileHover={{ y: -10 }}
+    className="group p-8 bg-white/70 dark:bg-white/5 backdrop-blur-xl border-2 border-pink-100 dark:border-pink-900/50 rounded-[2.5rem] shadow-lg hover:border-pink-400 transition-all flex flex-col h-full"
+  >
+    <div className="flex justify-between items-start mb-4">
+      <h3 className="text-2xl font-black text-pink-600 dark:text-pink-400 tracking-tighter">
+        {title}
+      </h3>
+      <div className="flex gap-2">
+        <a
+          href={githubLink}
+          target="_blank"
+          rel="noreferrer"
+          className="p-3 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-2xl hover:bg-pink-500 hover:text-white transition-all shadow-sm"
+        >
+          <FaGithub className="text-xl" />
+        </a>
+        {githubLink2 && (
+          <a
+            href={githubLink2}
+            target="_blank"
+            rel="noreferrer"
+            className="p-3 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-2xl hover:bg-pink-500 hover:text-white transition-all shadow-sm"
+            title="View Secondary Source"
+          >
+            <FaGithub className="text-xl" />
+          </a>
+        )}
+        {liveLink && (
+          <a
+            href={liveLink}
+            target="_blank"
+            rel="noreferrer"
+            className="p-3 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-2xl hover:bg-pink-500 hover:text-white transition-all shadow-sm"
+          >
+            <FaGlobe className="text-xl" />
+          </a>
+        )}
+      </div>
+    </div>
+    <p className="text-gray-600 dark:text-gray-400 font-medium leading-relaxed mb-6 flex-grow">
+      {description}
+    </p>
+    <div className="flex flex-wrap gap-2">
+      {tags.map((tag, i) => (
+        <span
+          key={i}
+          className="px-3 py-1 bg-pink-100 dark:bg-pink-900/30 text-pink-500 dark:text-pink-300 text-[10px] font-black uppercase tracking-widest rounded-full"
+        >
+          {tag}
+        </span>
+      ))}
+    </div>
+  </motion.div>
 );
 
 const GnzyPage = () => {
   return (
-    
     <div className="min-h-screen bg-[#fefaff] dark:bg-[#0f0f14] text-gray-800 dark:text-gray-200 font-sans selection:bg-pink-200">
       <MusicPlayer />
       {/* Navigation */}
@@ -244,8 +259,9 @@ const GnzyPage = () => {
               Audentes Fortuna Iuvat <br /> - Some Famous People -
             </h2>
             <p className="text-xl text-gray-500 dark:text-gray-400 leading-relaxed italic">
-              Hi, my name is Gnzyyyyyyy. I'm 19 Years old studying Computer Science in College.
-              I specialize in creating Fullstack projects. Node.js, MongoDB, and Python are my specialty
+              Hi, my name is Gnzyyyyyyy. I'm 19 Years old studying Computer
+              Science in College. I specialize in creating Fullstack projects.
+              Node.js, MongoDB, and Python are my specialty
             </p>
           </div>
         </motion.section>
@@ -295,8 +311,6 @@ const GnzyPage = () => {
               githubLink="https://github.com/gnzyyyyyyy/Despesaz---Personal-Expense-Tracker"
               tags={["Next.js", "React", "Node.js"]}
             />
-
-           
           </div>
         </section>
         <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-pink-100 dark:via-pink-900/30 to-transparent my-16" />
@@ -318,9 +332,15 @@ const GnzyPage = () => {
                   text: "Smashing birds in Badminton",
                 },
                 { icon: <GiGamepad />, text: "Playing games" },
-                { icon: <GiEightBall />, text: "Breaking Every single cue ball" },
+                {
+                  icon: <GiEightBall />,
+                  text: "Breaking Every single cue ball",
+                },
                 { icon: <FaMotorcycle />, text: "Riding around in ZX/XMAX" },
-                { icon: <GiPingPongBat />, text: "Playing Table Tennis during recess" },
+                {
+                  icon: <GiPingPongBat />,
+                  text: "Playing Table Tennis during recess",
+                },
               ].map((item, i) => (
                 <li
                   key={i}

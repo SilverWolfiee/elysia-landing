@@ -8,27 +8,11 @@ import {
   FaArrowLeft,
   FaGithub,
   FaInstagram,
-  FaMicrophone,
-  FaTiktok,
-  FaYoutube,
   FaGlobe,
-  FaPlay,
-  FaPause,
-  FaVolumeUp,
-  FaUtensils
+  FaUtensils,
 } from "react-icons/fa";
 
-import { GiShuttlecock, GiEightBall, GiConcreteBag, GiPingPongBat } from "react-icons/gi";
-import {
-  SiNodedotjs,
-  SiBun,
-  SiArchlinux,
-  SiSqlite,
-  SiReact,
-  SiC,
-  SiRust,
-  SiZig,
-} from "react-icons/si";
+import { GiShuttlecock, GiEightBall, GiPingPongBat } from "react-icons/gi";
 
 import ahiruPfp from "../assets/sareas.jpeg";
 
@@ -117,11 +101,9 @@ const ProjectCard = ({
   </motion.div>
 );
 
-
 const AhiruPage = () => {
   return (
     <div className="min-h-screen bg-[#fefaff] dark:bg-[#0f0f14] text-gray-800 dark:text-gray-200 font-sans selection:bg-pink-200">
-     
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 px-6 py-6 flex justify-between items-center pointer-events-none">
         <Link
@@ -184,20 +166,20 @@ const AhiruPage = () => {
               {/* 01 */}
             </div>
             <h2 className="text-3xl font-black text-pink-500 mb-6 text-center">
-              One day we look back at where we started and be amazed by how far we've come
+              One day we look back at where we started and be amazed by how far
+              we've come
               <br />
-              
               <span className="text-xl opacity-70 italic font-medium mt-4 block">
                 — Technoblade —
               </span>
             </h2>
             <p className="text-xl text-gray-500 dark:text-gray-400 leading-relaxed italic">
-              Hi, I'm Ahiru, i'm currently a culinary student expected to graduate in 2027 and i love ducks
+              Hi, I'm Ahiru, i'm currently a culinary student expected to
+              graduate in 2027 and i love ducks
             </p>
           </div>
         </motion.section>
 
-        
         {/* Projects Section */}
         <section className="space-y-8">
           <div className="flex items-center gap-4">
@@ -212,7 +194,6 @@ const AhiruPage = () => {
               title="Your Project"
               description="Your Project Description"
               tags={["Tags for your project"]}
-           
             />
           </div>
         </section>
@@ -233,8 +214,10 @@ const AhiruPage = () => {
                 { icon: <FaGamepad />, text: "Playing Games" },
                 { icon: <GiEightBall />, text: "Playing 8 Ball Pool" },
                 { icon: <GiShuttlecock />, text: "Playing Badminton" },
-                { icon: <GiPingPongBat />, text: "Playing Table Tennis during recess" },
-                
+                {
+                  icon: <GiPingPongBat />,
+                  text: "Playing Table Tennis during recess",
+                },
               ].map((item, i) => (
                 <li
                   key={i}
