@@ -404,7 +404,7 @@ const GnzyPage = () => {
           ELYSIAVERNIGHT
         </p>
         <p className="text-gray-400 dark:text-gray-500 font-bold uppercase tracking-[0.3em] text-[10px]">
-          Powered by <span className="text-pink-600">Elysiavernight</span>
+          Powered and funded by <span className="text-pink-600">Elysiavernight</span>
         </p>
         <p className="text-gray-400 dark:text-gray-500 font-bold uppercase tracking-[0.3em] text-[10px] mt-2">
           © 2026 ELYSIAVERNIGHT All Rights Reserved
